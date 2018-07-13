@@ -26,7 +26,7 @@ public class Main {
             arr[i] = (float) (arr[i] * Math.sin(0.2f + i / 5) * Math.cos(0.2f + i / 5) * Math.cos(0.4f + i / 2));
         }
 
-        System.out.println("Первый метод: " + (System.currentTimeMillis() - a));
+        System.out.println("Однопоточный метод: " + (System.currentTimeMillis() - a));
     }
 
     public static void multiThreaded(int size, int numberOfThreads){
@@ -91,6 +91,6 @@ public class Main {
             }
         }
 
-        System.out.println("Второй метод: " + (System.currentTimeMillis() - a));
+        System.out.println("Многопоточный метод: " + (System.currentTimeMillis() - a));
     }
 }
