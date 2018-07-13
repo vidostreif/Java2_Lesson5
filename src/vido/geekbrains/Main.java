@@ -51,11 +51,10 @@ public class Main {
             float[] a1;
             if (i < numberOfThreads-1) {
                 a1 = new float[step];
-                System.arraycopy(arr, i*step, a1, 0, step);
             } else {
                 a1 = new float[size-step*i];
-                System.arraycopy(arr, i*step, a1, 0, size-step*i);
             }
+            System.arraycopy(arr, i*step, a1, 0, a1.length);
             listMas.add(a1);
         }
 
@@ -84,11 +83,7 @@ public class Main {
         }
 
         for (int i = 0; i < listMas.size(); i++) {
-            if (i < listMas.size()-1) {
-                System.arraycopy(listMas.get(i), 0, arr, i*step, step);
-            } else {
-                System.arraycopy(listMas.get(i), 0, arr, i*step, size-step*i);
-            }
+            System.arraycopy(listMas.get(i), 0, arr, i*step, listMas.get(i).length);
         }
 
         System.out.println("Многопоточный метод: " + (System.currentTimeMillis() - a));
