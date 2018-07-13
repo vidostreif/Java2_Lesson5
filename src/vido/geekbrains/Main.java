@@ -5,13 +5,15 @@ import java.util.ArrayList;
 public class Main {
 
     public static void main(String[] args) {
+        //работает для любого количества потоков, если количество потоков не привышает размер массива
         int size = 10000000;
         int numberOfThreads = 2;
-        Metod1(size);
-        Metod2(size, numberOfThreads);
+
+        singleThreaded(size);
+        multiThreaded(size, numberOfThreads);
     }
 
-    public static void Metod1(int size){
+    public static void singleThreaded(int size){
         float[] arr = new float[size];
 
         for (int i = 0; i < arr.length; i++) {
@@ -27,10 +29,10 @@ public class Main {
         System.out.println("Первый метод: " + (System.currentTimeMillis() - a));
     }
 
-    public static void Metod2(int size, int numberOfThreads){
+    public static void multiThreaded(int size, int numberOfThreads){
 
         if (size < numberOfThreads) {
-            System.out.println("Размер массива должен быть больше количества потоков!");
+            System.out.println("Размер массива не должен привышать количество потоков!");
             return;
         }
 
@@ -45,9 +47,9 @@ public class Main {
 
         ArrayList<float[]> listMas = new ArrayList<>();
 
-        for (int i = 0; i < numberOfThreads+1; i++) {
+        for (int i = 0; i < numberOfThreads; i++) {
             float[] a1;
-            if (i < numberOfThreads) {
+            if (i < numberOfThreads-1) {
                 a1 = new float[step];
                 System.arraycopy(arr, i*step, a1, 0, step);
             } else {
