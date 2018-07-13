@@ -7,9 +7,11 @@ public class Main {
     public static void main(String[] args) {
         //работает для любого количества потоков, если количество потоков не привышает размер массива
         int size = 10000000;
-        int numberOfThreads = 2;
 
         singleThreaded(size);
+
+        int numberOfThreads = Runtime.getRuntime().availableProcessors();
+        System.out.println("Мы определили, что у процессора " + numberOfThreads + " логических ядер.");
         multiThreaded(size, numberOfThreads);
     }
 
