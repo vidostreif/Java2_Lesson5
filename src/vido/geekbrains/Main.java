@@ -45,7 +45,7 @@ public class Main {
 
         long a = System.currentTimeMillis();
 
-        ArrayList<float[]> listMas = new ArrayList<>();
+        ArrayList<float[]> listMas = new ArrayList<>(numberOfThreads);
 
         for (int i = 0; i < numberOfThreads; i++) {
             float[] a1;
@@ -58,7 +58,7 @@ public class Main {
             listMas.add(a1);
         }
 
-        ArrayList<Thread> listThread = new ArrayList<>();
+        ArrayList<Thread> listThread = new ArrayList<>(listMas.size());
 
         for (float[] mas: listMas) {
             Thread t1 = new Thread(new Runnable() {
