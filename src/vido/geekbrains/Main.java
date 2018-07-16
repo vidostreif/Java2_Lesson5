@@ -61,17 +61,19 @@ public class Main {
 
         ArrayList<Thread> listThread = new ArrayList<>(listMas.size());
 
+        int shiftMas = 0;
         for (float[] mas: listMas) {
+            int finalShiftMas = shiftMas;
             Thread t1 = new Thread(new Runnable() {
                 @Override
                 public void run() {
                     for (int i = 0; i < mas.length; i++) {
-                        mas[i] = (float) (mas[i] * Math.sin(0.2f + i / 5) * Math.cos(0.2f + i / 5) * Math.cos(0.4f + i / 2));
+                        mas[i] = (float) (mas[i] * Math.sin(0.2f + (i+ finalShiftMas) / 5) * Math.cos(0.2f + (i+ finalShiftMas) / 5) * Math.cos(0.4f + (i+ finalShiftMas) / 2));
                     }
                 }
             });
             t1.start();
-
+            shiftMas += mas.length;
             listThread.add(t1);
         }
 
